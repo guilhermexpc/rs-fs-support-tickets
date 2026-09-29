@@ -17,7 +17,7 @@ export function createTicketHandler({ request, response, database }) {
       updated_at: new Date()
     };
 
-    database.insert("tickets", ticket);
+    database.insert(Database.Tables.TICKETS, ticket);
     return response.writeHead(201).end(JSON.stringify({ message: "Ticket created successfully", ticket }));
   } catch (error) {
     response.writeHead(400, { "Content-Type": "application/json" });

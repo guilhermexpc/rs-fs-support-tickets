@@ -3,7 +3,6 @@ export async function jsonHandler(request, response) {
 
   request.body = null;
   request.query = {};
-  Object.preventExtensions(request);
 
   const buffer = [];
 
