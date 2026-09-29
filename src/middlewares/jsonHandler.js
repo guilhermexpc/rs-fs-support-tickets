@@ -1,5 +1,9 @@
-export async function jsonHandler(request, response, next) {
+export async function jsonHandler(request, response) {
   // Handle the request/Response logic here
+
+  request.body = null;
+  request.query = {};
+  Object.preventExtensions(request);
 
   const buffer = [];
 
@@ -8,7 +12,8 @@ export async function jsonHandler(request, response, next) {
   }
 
   try {
-    request.body = JSON.parse(Buffer.concat(buffer).toString());
+    const body = Buffer.concat(buffer).toString();
+    request.body = body ? JSON.parse(body) : null;
   } catch (error) {
     request.body = null;
     console.log("Error: ", error);
