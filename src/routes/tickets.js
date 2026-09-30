@@ -1,5 +1,7 @@
 import { createTicketHandler } from "../handlers/tickets/create.js";
 import { indexTicketHandler } from "../handlers/tickets/index.js";
+import { updateTicketHandler } from "../handlers/tickets/update.js";
+import { updateStatusTicketHandler } from "../handlers/tickets/updateStatus.js";
 
 export const tickets = [
   {
@@ -11,5 +13,15 @@ export const tickets = [
     method: "GET",
     path: "/tickets",
     handler: indexTicketHandler
+  },
+  {
+    method: "PUT",
+    path: "/tickets/:id",
+    handler: updateTicketHandler
+  },
+  {
+    method: "PATCH",
+    path: "/tickets/:id/close",
+    handler: updateStatusTicketHandler
   }
 ];

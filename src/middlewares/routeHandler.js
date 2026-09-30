@@ -17,12 +17,15 @@ export async function routeHandler(request, response) {
     // retorna um array validade por uma expressão regular
     const routeParams = request.url.match(route.path);
 
-    const query = routeParams.groups.query;
+    const { query, ...params } = routeParams.groups;
 
-    console.log(routeParams);
+    request.params = params;
+
+    // console.log("RotueParams:", routeParams);
     // console.log(extractQueryParams(query));
 
     request.query = query ? extractQueryParams(query) : {};
+
     return route.handler({ request, response, database });
   }
 

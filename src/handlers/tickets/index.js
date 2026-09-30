@@ -13,7 +13,7 @@ export function indexTicketHandler({ request, response, database }) {
   const { status } = request.query;
 
   const filters = status ? { status } : null;
-  console.log(filters);
+  // console.log(filters);
   const tickets = database.select(Database.Tables.TICKETS, filters);
   return response.end(JSON.stringify(tickets));
 }
